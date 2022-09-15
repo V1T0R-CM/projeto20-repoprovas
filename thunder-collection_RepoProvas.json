@@ -1,0 +1,131 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "RepoProvas",
+    "dateExported": "2022-09-15T14:44:34.539Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "f88257e1-29f8-4a49-a151-79546230c358",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2022-09-15T14:24:26.324Z",
+            "sortNum": 10000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "3898c64c-9a97-4c1a-960b-71a4dc15cd36",
+            "colId": "c74dd064-a214-4b2f-81ca-add22c2c2603",
+            "containerId": "f88257e1-29f8-4a49-a151-79546230c358",
+            "name": "SignUp Approved",
+            "url": "https://repo-provas20-api.herokuapp.com/signup",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2022-09-15T14:26:01.446Z",
+            "modified": "2022-09-15T14:31:21.145Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"testeregistro@email.com\",\n  \"password\": \"senhadeteste\",\n  \"passwordConfirmation\": \"senhadeteste\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "55628b93-7dea-40b5-9906-4032cc5592e7",
+            "colId": "c74dd064-a214-4b2f-81ca-add22c2c2603",
+            "containerId": "f88257e1-29f8-4a49-a151-79546230c358",
+            "name": "Signup Conflict",
+            "url": "https://repo-provas20-api.herokuapp.com/signup",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2022-09-15T14:33:03.765Z",
+            "modified": "2022-09-15T14:33:20.248Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"testeconflito@email.com\",\n  \"password\": \"senhadeteste\",\n  \"passwordConfirmation\": \"senhadeteste\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "65b7fe24-f843-408a-a77a-dbd89b41e69b",
+            "colId": "c74dd064-a214-4b2f-81ca-add22c2c2603",
+            "containerId": "f88257e1-29f8-4a49-a151-79546230c358",
+            "name": "SignUp Different Passwords",
+            "url": "https://repo-provas20-api.herokuapp.com/signup",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2022-09-15T14:34:50.463Z",
+            "modified": "2022-09-15T14:35:39.485Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"testesenhasdiferentes@email.com\",\n  \"password\": \"senhadeteste\",\n  \"passwordConfirmation\": \"outrasenhadeteste\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "77730920-62fb-4e8f-906a-d81f71ab7540",
+            "colId": "c74dd064-a214-4b2f-81ca-add22c2c2603",
+            "containerId": "f88257e1-29f8-4a49-a151-79546230c358",
+            "name": "SignIn Approved",
+            "url": "https://repo-provas20-api.herokuapp.com/signin",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2022-09-15T14:36:15.216Z",
+            "modified": "2022-09-15T14:43:43.242Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"testelogin@email.com\",\n  \"password\": \"senhadeteste\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4d6a3540-6108-4695-a2e8-57d2ce6dd689",
+            "colId": "c74dd064-a214-4b2f-81ca-add22c2c2603",
+            "containerId": "f88257e1-29f8-4a49-a151-79546230c358",
+            "name": "SignIn Wrong Password",
+            "url": "https://repo-provas20-api.herokuapp.com/signin",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2022-09-15T14:36:24.726Z",
+            "modified": "2022-09-15T14:44:14.702Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"testesenhaerrada@email.com\",\n  \"password\": \"testedesenha\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "941f0911-defd-47ee-b116-4e70d75ca2d8",
+            "colId": "c74dd064-a214-4b2f-81ca-add22c2c2603",
+            "containerId": "f88257e1-29f8-4a49-a151-79546230c358",
+            "name": "SignIn Email Not Registered",
+            "url": "https://repo-provas20-api.herokuapp.com/signin",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2022-09-15T14:36:26.706Z",
+            "modified": "2022-09-15T14:43:46.372Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"testenaoregistrado@email.com\",\n  \"password\": \"senhadeteste\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
