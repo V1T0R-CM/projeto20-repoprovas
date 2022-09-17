@@ -4,6 +4,10 @@ import { prisma } from "../src/config/database";
 import { registerFactory, loginFactory } from "./factories/authFactory";
 
 
+beforeEach(async () => {
+    await prisma.$executeRaw`TRUNCATE TABLE "Accounts"`;
+});
+
 describe('Teste rota POST /signup', () => {
     it("Deve criar uma conta e retornar status 201", async () => {
         const account = registerFactory(10, true);

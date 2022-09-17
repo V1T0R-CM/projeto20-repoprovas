@@ -11,6 +11,53 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
+model Terms {
+  id          Int           @id @default(autoincrement())
+  number      Int           @unique
+  Disciplines Disciplines[]
+}
+
+model Disciplines {
+  id                 Int                  @id @default(autoincrement())
+  name               String               @unique
+  Terms              Terms                @relation(fields: [termId], references: [id])
+  termId             Int
+  TeacherDisciplines TeacherDisciplines[]
+}
+
+model Teachers {
+  id                 Int                  @id @default(autoincrement())
+  name               String               @unique
+  TeacherDisciplines TeacherDisciplines[]
+}
+
+model TeacherDisciplines {
+  id           Int         @id @default(autoincrement())
+  Teachers     Teachers    @relation(fields: [teacherId], references: [id])
+  Disciplines  Disciplines @relation(fields: [disciplineId], references: [id])
+  teacherId    Int
+  disciplineId Int
+  Tests        Tests[]
+
+  @@unique([teacherId, disciplineId])
+}
+
+model Categories {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  Tests Tests[]
+}
+
+model Tests {
+  id                  Int                @id @default(autoincrement())
+  name                String
+  pdfUrl              String
+  Categories          Categories         @relation(fields: [categoryId], references: [id])
+  TeacherDisciplines  TeacherDisciplines @relation(fields: [teacherDisciplineId], references: [id])
+  categoryId          Int
+  teacherDisciplineId Int
+}
+
 model Accounts {
   id       Int    @id @default(autoincrement())
   email    String @unique
