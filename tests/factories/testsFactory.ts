@@ -1,10 +1,11 @@
 import { faker } from "@faker-js/faker";
 
-export function addTest(categoryId: number, teacherDiciplineId: number) {
+export function testsFactory(category: string, discipline: string, teacher: string) {
     return {
-        name: faker.lorem.words(4),
+        name: "Prova de react",
         pdfUrl: faker.internet.url(),
-        categoryId: categoryId,
-        teacherDiciplineId: teacherDiciplineId
+        category: category,
+        discipline: discipline,
+        teacher: teacher
     }
 }
