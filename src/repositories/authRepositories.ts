@@ -1,4 +1,5 @@
 import { prisma } from "../config/database"
+import { IAccountData } from "../types/accountTypes";
 
 export async function getById(id: number) {
     const result = await prisma.accounts.findUnique({ where: { id: id } });
@@ -10,6 +11,6 @@ export async function getByEmail(email: string) {
     return result
 }
 
-export async function insert(email: string, password: string) {
-    await prisma.accounts.create({ data: { email: email, password: password } })
+export async function insert(accountData: IAccountData) {
+    await prisma.accounts.create({ data: accountData })
 }
