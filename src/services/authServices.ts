@@ -8,7 +8,7 @@ export async function registerAccount(accontData: IAccountData) {
     const passwordHash = bcrypt.hashSync(accontData.password, 10);
     if (user) throw { code: "Conflict", message: "Email já esta cadastrado" };
 
-    await authRepositories.insert(accontData.email, passwordHash);
+    await authRepositories.insert({ email: accontData.email, password: passwordHash });
 }
 
 export async function loginAccount(accontData: IAccountData) {
