@@ -96,3 +96,25 @@ describe('Teste rota GET disciplines/tests', () => {
         expect(result.status).toBe(401);
     });
 });
+
+describe('Teste rota GET teachers/tests', () => {
+    it("Deve retornar todas as provas separadas por professores e retornar status 200", async () => {
+        const regiterAccount = await registerFactory(10, true);
+        const account = await loginFactory(regiterAccount.email, regiterAccount.password);
+
+        await supertest(app).post('/signup').send(regiterAccount);
+        const loginResult = await supertest(app).post('/signin').send(account);
+        const token = loginResult.body.token;
+        const result = await supertest(app).get("/teachers/tests").set({ authorization: `Bearer ${token}` })
+
+        expect(result.status).toBe(200);
+        expect(result.body).toBeInstanceOf(Array);
+    });
+
+    it("Deve enviar um authorization invalido e retornar status 401", async () => {
+        const token = "TokenInvalido";
+        const result = await supertest(app).get("/teachers/tests").set({ authorization: `Bearer ${token}` })
+
+        expect(result.status).toBe(401);
+    });
+});

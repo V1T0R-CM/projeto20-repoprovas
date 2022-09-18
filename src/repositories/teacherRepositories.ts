@@ -7,3 +7,8 @@ export async function getByName(name: string) {
 
     return result
 }
+
+export async function getAll() {
+    const result = await prisma.teachers.findMany()
+    return result
+}

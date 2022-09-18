@@ -10,3 +10,8 @@ export async function getTestsByDiscipline(req: Request, res: Response) {
     const result = await testsServices.getTestsByDiscipline();
     res.status(200).send(result);
 }
+
+export async function getTestsByTeachers(req: Request, res: Response) {
+    const result = await testsServices.getTestsByTeachers();
+    res.status(200).send(result);
+}

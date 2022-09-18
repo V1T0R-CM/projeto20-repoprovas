@@ -23,6 +23,9 @@ export async function getAllCategoryTests() {
                             disciplineId: true,
                             Disciplines: {
                                 select: { id: true, name: true },
+                            },
+                            Teachers: {
+                                select: { name: true },
                             }
                         }
                     }

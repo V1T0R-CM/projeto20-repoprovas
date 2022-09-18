@@ -29,7 +29,8 @@ export async function getTestsByDiscipline() {
     return Promise.all(
         terms.map(async (term) => {
             const result = {
-                number: term.id,
+                id: term.id,
+                number: term.number,
                 disciplines: term.Disciplines.map((discipline) => {
                     return {
                         id: discipline.id,
@@ -55,6 +56,17 @@ export async function getTestsByDiscipline() {
                 })
             };
             return result;
+        })
+    );
+}
+
+export async function getTestsByTeachers() {
+    const teachers = await teacherRepositories.getAll();
+
+    return await Promise.all(
+        teachers.map(async (teacher) => {
+            const teacherTests = await testRepositories.getAllByTeacherId(teacher.id);
+            return { ...teacher, tests: teacherTests }
         })
     );
 }

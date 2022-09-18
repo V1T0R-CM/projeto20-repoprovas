@@ -61,11 +61,12 @@ O Body do retorno tem o seguinte formato:
 ```json
 [
   {
+    "id": "id_do_modulo", //string
     "number": "numero_modulo", //number
     "disciplines": [
       {
         "id": "id_da_disciplina", //number
-        "name": "nome_do_modulo", //string
+        "name": "nome_da_disciplina", //string
         "categories": [
           {
             "id": "id_da_categoria", //number
@@ -79,6 +80,28 @@ O Body do retorno tem o seguinte formato:
             ]//array
           }//object
         ]//array
+      }//object
+    ]//array
+  }//object
+]//array
+```
+
+## Rota <span style="color:green"> **GET** </span>/teachers/tests
+
+Essa é uma rota autenticada. Sua função é retornar todos os cadastros de prova por professores.
+
+O Body do retorno tem o seguinte formato:
+
+```json
+[
+  {
+    "id": "id_do_professor",//number
+    "nome": "nome_do_professor", //string
+    "tests": [
+      {
+        "id": "id_da_avaliacao",//number
+        "name": "nome_da_avaliacao",//string
+        "pdfUrl": "url_do_pdf_da_avaliacao"//number
       }//object
     ]//array
   }//object
