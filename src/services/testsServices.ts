@@ -2,6 +2,7 @@ import * as categoryRepositories from "../repositories/categoryRepositories";
 import * as teacherRepositories from "../repositories/teacherRepositories";
 import * as disciplineRepositories from "../repositories/disciplineRepositories";
 import * as teacherDisciplineRepositories from "../repositories/teacherDisciplineRepositories";
+import * as termsRepositories from "../repositories/termsRepositories";
 import * as testRepositories from "../repositories/testRepositories";
 import { ICreateTestsData } from "../types/testsTypes";
 
@@ -19,4 +20,41 @@ export async function registerTests(createTestsData: ICreateTestsData) {
     if (!teacherDiscipline) throw { code: "BadRequest", message: "Esta disciplina não dada pro esse professor" }
 
     await testRepositories.insert({ name: createTestsData.name, pdfUrl: createTestsData.pdfUrl, categoryId: category.id, teacherDisciplineId: teacherDiscipline.id });
+}
+
+export async function getTestsByDiscipline() {
+    const terms = await termsRepositories.getAllTermsDisciplines();
+    const categories = await categoryRepositories.getAllCategoryTests();
+
+    return Promise.all(
+        terms.map(async (term) => {
+            const result = {
+                number: term.id,
+                disciplines: term.Disciplines.map((discipline) => {
+                    return {
+                        id: discipline.id,
+                        name: discipline.name,
+                        categories: categories.map((category) => {
+                            return {
+                                id: category.id,
+                                category: category.name,
+                                tests: category.Tests.flatMap((test) => {
+                                    if (test.TeacherDisciplines.disciplineId === discipline.id) {
+                                        return {
+                                            id: test.id,
+                                            name: test.name,
+                                            pdfUrl: test.pdfUrl
+                                        };
+                                    } else {
+                                        return [];
+                                    }
+                                })
+                            };
+                        })
+                    };
+                })
+            };
+            return result;
+        })
+    );
 }

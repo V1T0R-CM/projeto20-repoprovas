@@ -52,3 +52,35 @@ O Body da requisição deve ser feito no seguinte formato:
   "teacher": "nome_do_professor" //string
 }
 ```
+## Rota <span style="color:green"> **GET** </span>/disciplines/tests
+
+Essa é uma rota autenticada. Sua função é retornar todos os cadastros de prova por disciplina.
+
+O Body do retorno tem o seguinte formato:
+
+```json
+[
+  {
+    "number": "numero_modulo", //number
+    "disciplines": [
+      {
+        "id": "id_da_disciplina", //number
+        "name": "nome_do_modulo", //string
+        "categories": [
+          {
+            "id": "id_da_categoria", //number
+            "category": "nome_da_categoria", //string
+            "tests": [
+              {
+                "id": "id_da_avaliacao", //number
+                "name": "nome_da_avaliacao", //string
+                "pdfUrl": "url_do_pdf_da_avaliacao", //string
+              }//object
+            ]//array
+          }//object
+        ]//array
+      }//object
+    ]//array
+  }//object
+]//array
+```
