@@ -37,3 +37,18 @@ A resposta da requisição virá no seguinte formato:
   "token": "token_de_acesso" //string
 }
 ```
+## Rota <span style="color:yellow"> **POST** </span>/tests
+
+Essa é uma rota autenticada. Sua função é fazer o cadastro de uma nova prova.
+
+O Body da requisição deve ser feito no seguinte formato:
+
+```json
+{
+  "name": "nome_da_prova", //string
+  "pdfUrl": "url_do_pdf_da_prova", //string
+  "category": "nome_da_categoria", //string
+  "discipline": "nome_da_disciplina", //string
+  "teacher": "nome_do_professor" //string
+}
+```
