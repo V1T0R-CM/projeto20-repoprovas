@@ -63,10 +63,23 @@ export async function getTestsByDiscipline() {
 export async function getTestsByTeachers() {
     const teachers = await teacherRepositories.getAll();
 
-    return await Promise.all(
+    const result = await Promise.all(
         teachers.map(async (teacher) => {
-            const teacherTests = await testRepositories.getAllByTeacherId(teacher.id);
-            return { ...teacher, tests: teacherTests }
+            const teacherCategoryTests = await categoryRepositories.getAllByTeacherId(teacher.id);
+            const categories = teacherCategoryTests.map((category) => {
+                const tests = category.Tests.map((test) => {
+                    return { id: test.id, name: test.name, pdfUrl: test.pdfUrl, discipline: test.TeacherDisciplines.Disciplines.name }
+                })
+                return { id: category.id, name: category.name, tests: tests }
+            }
+            )
+            return {
+                ...teacher, category: categories
+            }
         })
-    );
+    )
+
+    console.log(result);
+
+    return result
 }

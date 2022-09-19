@@ -15,6 +15,15 @@ export async function getAllByTeacherId(teacherId: number) {
             id: true,
             name: true,
             pdfUrl: true,
+            TeacherDisciplines: {
+                select: {
+                    Disciplines: {
+                        select: {
+                            name: true
+                        }
+                    }
+                }
+            }
         }
     });
 

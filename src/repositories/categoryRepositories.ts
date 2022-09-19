@@ -34,3 +34,38 @@ export async function getAllCategoryTests() {
         }
     });
 }
+
+export async function getAllByTeacherId(teacherId: number) {
+    const result = await prisma.categories.findMany({
+        where: {
+            Tests: {
+                some: {
+                    TeacherDisciplines: {
+                        teacherId: teacherId
+                    }
+                }
+            }
+        }, select: {
+            id: true,
+            name: true,
+            Tests: {
+                select: {
+                    id: true,
+                    name: true,
+                    pdfUrl: true,
+                    TeacherDisciplines: {
+                        select: {
+                            Disciplines: {
+                                select: {
+                                    name: true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    return result;
+}
