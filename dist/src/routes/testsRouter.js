@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var testsMiddlewares_1 = require("../middlewares/testsMiddlewares");
+var genericMiddlewares_1 = require("../middlewares/genericMiddlewares");
+var testsControllers_1 = require("../controllers/testsControllers");
+var testsRouter = (0, express_1.Router)();
+testsRouter.post("/tests", genericMiddlewares_1.tokenMiddlewareValidation, testsMiddlewares_1.testsValidation, testsControllers_1.createTests);
+testsRouter.get("/disciplines/tests", genericMiddlewares_1.tokenMiddlewareValidation, testsControllers_1.getTestsByDiscipline);
+testsRouter.get("/teachers/tests", genericMiddlewares_1.tokenMiddlewareValidation, testsControllers_1.getTestsByTeachers);
+exports["default"] = testsRouter;
